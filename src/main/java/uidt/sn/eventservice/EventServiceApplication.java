@@ -2,8 +2,11 @@ package uidt.sn.eventservice;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cloud.openfeign.EnableFeignClients;
+
 
 @SpringBootApplication
+@EnableFeignClients(basePackages = "uidt.sn.eventservice.client")
 public class EventServiceApplication {
 
     public static void main(String[] args) {
