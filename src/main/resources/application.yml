@@ -23,12 +23,16 @@ spring:
         jwt:
           secret-key: ${JWT_SECRET:c3VwZXItc2VjcmV0LWtleS0yMDI2LWV2ZW50LWFwcC1taWNyb3NlcnZpY2Vz}
 
-  eureka:
-    client:
-      service-url:
-        defaultZone: http://localhost:8761/eureka/
-    instance:
-      prefer-ip-address: true
+#  eureka:
+#    client:
+#      service-url:
+#        defaultZone: http://localhost:8761/eureka/
+#    instance:
+#      prefer-ip-address: true
+
+eureka:
+  client:
+    enabled: false
 
 server:
   port: 8081

@@ -3,6 +3,8 @@ package uidt.sn.eventservice.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uidt.sn.eventservice.enumeration.EventStatus;
+import uidt.sn.eventservice.exception.EventCompleted;
+import uidt.sn.eventservice.exception.EventNotFound;
 import uidt.sn.eventservice.model.Event;
 import uidt.sn.eventservice.repository.EventRepository;
 import java.time.LocalDateTime;
@@ -20,7 +22,7 @@ public class EventService {
 
     public Event getById(Long id) {
         return eventRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Event not found with id: " + id));
+                .orElseThrow(() -> new EventNotFound("Event not found with id: " + id));
     }
 
     public List<Event> getAll() {
@@ -52,7 +54,7 @@ public class EventService {
     public Event cancelEvent(Long id) {
         Event event = getById(id);
         if (event.getStatus() == EventStatus.COMPLETED) {
-            throw new RuntimeException("Cannot cancel a COMPLETED event");
+            throw new EventCompleted("Cannot cancel a COMPLETED event");
         }
         event.setStatus(EventStatus.CANCELLED);
         return eventRepository.save(event);
