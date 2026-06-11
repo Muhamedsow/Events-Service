@@ -15,7 +15,7 @@ import uidt.sn.eventservice.service.EventService;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/events")
+@RequestMapping("/events")
 @RequiredArgsConstructor
 public class EventController {
     private final EventService eventService;
